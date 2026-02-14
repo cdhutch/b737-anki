@@ -1,0 +1,31 @@
+NoteID	Front	Back	Source Document	Source Location	Verification Notes	Tags
+lim-op-001	Maximum operating altitude?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.1 Altitude Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-002	Maximum operating speed (VMO/MMO)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-003	Maximum Mach (MMO)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-004	Maximum flap extension speed — Flaps 1?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-005	Maximum flap extension speed — Flaps 5?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-006	Maximum flap extension speed — Flaps 10?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-007	Maximum flap extension speed — Flaps 15?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-008	Maximum flap extension speed — Flaps 25?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-009	Maximum flap extension speed — Flaps 30?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-010	Maximum flap extension speed — Flaps 40?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.1 Flaps		unverified b737-800 limits verbatim boldface-pending
+lim-op-011	Maximum landing gear extension speed (VLO EXT)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.15.1 Landing Gear		unverified b737-800 limits verbatim boldface-pending
+lim-op-012	Maximum landing gear extended speed (VLO)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.15.1 Landing Gear		unverified b737-800 limits verbatim boldface-pending
+lim-op-013	Maximum landing gear retraction speed?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.15.1 Landing Gear		unverified b737-800 limits verbatim boldface-pending
+lim-op-014	Maximum takeoff weight (structural) — B737-800?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-015	Maximum taxi weight (structural) — B737-800?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-016	Maximum landing weight (structural) — B737-800?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-017	Maximum zero fuel weight (structural) — B737-800?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-018	Maximum demonstrated crosswind — takeoff/landing (dry)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.4 Wind Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-019	Maximum tailwind component — takeoff?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.4 Wind Limits		unverified b737-800 limits verbatim boldface-pending
+lim-op-020	Maximum tailwind component — landing?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.2.4 Wind Limits		unverified b737-800 limits verbatim boldface-pending
+lim-apu-001	APU starter duty cycle / starter limit?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.7.1 Starter Limit		unverified b737-800 limits verbatim boldface-pending
+lim-eng-001	Maximum engine start EGT limit?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.10.3 Temperature and Time Limits		unverified b737-800 limits verbatim boldface-pending
+lim-eng-002	Maximum continuous thrust / N1 limit reference (as stated in limitations)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.10 Engines (specific subsection)		unverified b737-800 limits verbatim boldface-pending
+lim-fuel-001	Minimum fuel temperature limit?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.14.2 Fuel Temperature		unverified b737-800 limits verbatim boldface-pending
+lim-fuel-002	Fuel imbalance limit?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.14.4 Fuel Imbalance		unverified b737-800 limits verbatim boldface-pending
+lim-ice-001	Definition of icing conditions (as stated in limitations)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.5.1 Definition of Icing Conditions		unverified b737-800 limits verbatim boldface-pending
+lim-ice-002	Engine anti-ice usage limitation (as stated in limitations)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.5.2 Anti-Ice Systems		unverified b737-800 limits verbatim boldface-pending
+lim-press-001	Maximum cabin altitude (pressurization limit)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.4.2 Pressurization		unverified b737-800 limits verbatim boldface-pending
+lim-o2-001	Minimum flight crew oxygen pressure?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.3.5 Minimum Flight Crew Oxygen Pressure		unverified b737-800 limits verbatim boldface-pending
+lim-spdb-001	Speedbrake limitation (as stated in limitations)?	[VERIFY VALUE]	B737 AOM Rev 9.0	Ch 18 §18.11.3 Speedbrakes		unverified b737-800 limits verbatim boldface-pending
