@@ -4,18 +4,41 @@ Structured, source-controlled Anki deck for B737 training.
 
 ---
 
-## Philosophy
+# Core Philosophy
 
-- No AI-trust.
-- Every note begins as `unverified`.
-- Nothing is trusted until manually verified.
+- No AI trust.
+- Every generated note begins with the tag: `unverified`.
+- Manual verification happens in the TSV file.
+- Only after manual review is content merged from `draft` → `main`.
 - Section numbers (not page numbers) are used for source references.
 - Git repository is the single source of truth.
 - Anki is only the delivery mechanism.
 
+Primary goals:
+- Sim survival
+- Long-term line proficiency
+
 ---
 
-## Repository Structure
+# Deck Architecture (Anki)
+
+## One Physical Deck
+B737::LIMITS
+
+All limits notes live here.
+
+## One Filtered Deck (Dynamic)
+B737::LIMITS::BOLDFACE
+
+Filtered search:
+deck:"B737::LIMITS" tag:boldface
+
+This deck is dynamically built in Anki.
+No duplicate notes are created.
+
+---
+
+# Repository Structure
 
 flows/
 limits/
@@ -24,11 +47,11 @@ recall-items/
 systems/
 callouts/
 
-Each TSV file represents one logical unit.
+Each TSV file represents one logical unit (e.g., §18.2.1 Altitude Limits).
 
 ---
 
-## TSV Column Format
+# TSV Column Format
 
 All TSV files must use this exact column order:
 
@@ -42,7 +65,9 @@ Tags
 
 Tabs must be used as delimiters.
 
-### NoteID Rules
+---
+
+# NoteID Rules
 
 - Must be globally unique.
 - Must remain stable once created.
@@ -60,47 +85,38 @@ flow-bstart-003
 
 # Tag Taxonomy
 
-Tags are structured to allow filtering by:
-
-1. Verification Status
-2. Aircraft Variant (exactly one required)
-3. Content Type
-4. Memory Status
-5. Optional Context Flags
+Tags are structured in four required categories plus optional context tags.
 
 ---
 
 ## 1. Verification Status (Required)
 
+Exactly one of:
+
 - `unverified`
 - `verified`
+
+New notes always begin as `unverified`.
 
 ---
 
 ## 2. Aircraft Variant (Exactly One Required)
 
-Each note must contain **exactly one** of the following:
+Each note must contain exactly one of:
 
-- `b737-800`  → Applies only to the 737-800  
-- `b737-max8` → Applies only to the 737 MAX 8  
-- `common`    → Applies identically to both airframes  
+- `b737-800`   → Applies only to the 737-800
+- `b737-max8`  → Applies only to the 737 MAX 8
+- `common`     → Applies identically to both airframes
 
-### Rules
+Rules:
 
 - Do NOT combine variant tags.
-- Do NOT use both `b737-800` and `b737-max8` on the same note.
 - If a value differs between aircraft, create separate NoteIDs.
-- If a value is identical for both, use `common`.
-
-Example:
-
-lim-wt-001 (b737-800)  
-lim-wt-001-max (b737-max8)  
-lim-spd-001 (common)
+- Default assumption is `common` unless a documented difference exists.
 
 ---
 
-## 3. Content Type Tags (Exactly One Required)
+## 3. Content Type (Exactly One Required)
 
 - `limits`
 - `flow`
@@ -113,64 +129,51 @@ lim-spd-001 (common)
 
 ## 4. Memory Classification
 
-- `boldface-pending`
+- `boldface-pending` (default until reviewed)
 - `boldface`
-- (no tag if not boldface)
+
+Boldface-only study uses the filtered deck.
+No duplicate physical deck exists.
 
 ---
 
-## 5. Optional Context Tags
+# Optional Context Tags (Sim + Line Optimized)
 
-- `verbatim`
-- `max-delta`
-- `company-specific`
-- `training-only`
-- `performance`
-- `structural`
-- `rvsm`
+These tags exist only if they improve filtering and operational recall.
+
+- `verbatim` → Exact numeric/wording recall required.
+- `structural` → Hard red-line airframe or engine limitations.
+- `max-delta` → Differences specific to the MAX 8.
+- `rvsm` → RVSM regulatory-specific limitations.
+- `company-specific` → Company policy differs from Boeing baseline.
+
+Tags that are NOT used:
+- performance
+- training-only
 
 ---
 
-# Variant Policy (Operational Approach)
+# Limits Workflow (Reset Model)
 
-Training sequence:
-- 737-800 first
-- MAX 8 differences later
-
-### Policy
-
-1. Default assumption is `common` unless a documented difference exists.
-2. Differences must be explicitly documented before assigning `b737-max8` or `b737-800`.
-3. MAX-only differences should also include `max-delta`.
-4. Separate NoteIDs must be used for differing values.
+1. Upload PDF section.
+2. ChatGPT generates a complete TSV file from that section.
+3. All notes:
+   - Fully populated
+   - Tagged `unverified`
+   - Include exactly one aircraft variant tag
+4. File goes into `draft` branch.
+5. Manual review + corrections happen in TSV.
+6. Merge `draft` → `main`.
+7. Import into Anki from `main` only.
 
 ---
 
 # Branch Policy
 
-- `main` = Fully verified, trusted, sim-ready content only.
-- `draft` = Active development, unverified, in-progress edits.
+- `draft` = Generated, unverified, in-progress work.
+- `main`  = Fully verified, trusted, sim-ready content.
 
-### Workflow
-
-1. All new TSV generation happens on `draft`.
-2. Manual review and verification occur on `draft`.
-3. Only fully verified sections are merged into `main`.
-4. `main` should always represent clean, operationally trusted material.
-
----
-
-# Verification Workflow
-
-1. Review TSV manually.
-2. Confirm values against AOM / QRH / NPC.
-3. Adjust tags:
-   - Remove `unverified`
-   - Add `verified`
-   - Resolve `boldface-pending`
-4. Ensure exactly one aircraft variant tag is present.
-5. Commit to `draft`.
-6. Merge to `main` only when section is complete.
+Only verified sections are merged into `main`.
 
 ---
 

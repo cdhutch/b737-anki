@@ -1,0 +1,9 @@
+NoteID	Front	Back	Source Document	Source Location	Verification Notes	Tags
+lim-alt-001	Maximum operating altitude?	41,000 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 Altitude Limits		verified common limits verbatim
+lim-alt-002	Maximum takeoff and landing altitude?	8400 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 Altitude Limits		verified common limits verbatim
+lim-alt-003	Maximum operating altitude with flaps and/or slats extended?	20,000 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 Altitude Limits		verified common limits verbatim boldface
+lim-alt-004	Maximum allowable in-flight difference between captain and FO altitude displays (RVSM)?	200 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 RVSM Altimeter Tolerances		verified common limits verbatim
+lim-alt-005	Maximum on-ground difference between captain and FO altitude displays (sea level to 5000 ft, RVSM)?	50 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 RVSM Altimeter Tolerances		verified common limits verbatim
+lim-alt-006	Maximum on-ground difference between captain and FO altitude displays (5001 ft to 10,000 ft, RVSM)?	60 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 RVSM Altimeter Tolerances		verified common limits verbatim
+lim-alt-007	Maximum on-ground difference between captain/FO altitude display and field elevation (RVSM)?	75 feet	B737 AOM Rev 9.0	Ch 18 §18.2.1 RVSM Altimeter Tolerances		verified common limits verbatim
+lim-alt-008	Is the standby altimeter approved for RVSM operations?	No — standby altimeter is not RVSM compliant.	B737 AOM Rev 9.0	Ch 18 §18.2.1 RVSM Altimeter Tolerances Note		verified common limits

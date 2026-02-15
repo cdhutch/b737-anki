@@ -1,0 +1,16 @@
+NoteID	Front	Back	Source Document	Source Location	Verification Notes	Tags
+lim-spd-001	Maximum operating airspeed (VMO)?	340 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim structural
+lim-spd-002	Maximum operating Mach number (MMO)?	.82 Mach	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim structural
+lim-spd-003	Severe turbulence penetration speed?	280 knots / .76 Mach	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim boldface
+lim-spd-004	Maximum landing gear extension speed (VLO extension)?	270 knots / .82 Mach	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim structural
+lim-spd-005	Maximum landing gear retraction speed (VLO retraction)?	235 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim structural
+lim-spd-006	Maximum landing gear extended speed (VLE)?	320 knots / .82 Mach	B737 AOM Rev 9.0	Ch 18 §18.2.2 Speed Limits		verified common limits verbatim structural
+lim-spd-007	Maximum flap extension speed — Flaps 1?	240 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-008	Maximum flap extension speed — Flaps 5?	240 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-009	Maximum flap extension speed — Flaps 10?	210 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-010	Maximum flap extension speed — Flaps 15?	200 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-011	Maximum flap extension speed — Flaps 25?	190 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-012	Maximum flap extension speed — Flaps 30?	175 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
+lim-spd-013	Maximum flap extension speed — Flaps 40?	162 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural b737-800
+lim-spd-015	Maximum flap extension speed — Flaps 40?	166 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural b737-max8
+lim-spd-014	Maximum flap extension speed — Flaps 2?	240 knots	B737 AOM Rev 9.0	Ch 18 §18.2.2 Flap Operating Speeds		verified common limits verbatim structural
