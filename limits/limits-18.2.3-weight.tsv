@@ -1,0 +1,9 @@
+NoteID	Front	Back	Source Document	Source Location	Verification Notes	Tags
+lim-wt-001	Maximum taxi weight (lbs) — 737-800?	174,700	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-800 limits verbatim structural
+lim-wt-001-max	Maximum taxi weight (lbs) — 737 MAX 8?	182,700	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-max8 limits verbatim structural
+lim-wt-002	Maximum takeoff weight (lbs) — 737-800?	174,200	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-800 limits verbatim structural
+lim-wt-002-max	Maximum takeoff weight (lbs) — 737 MAX 8?	182,200	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-max8 limits verbatim structural
+lim-wt-003	Maximum landing weight (lbs) — 737-800?	146,300	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-800 limits verbatim structural 
+lim-wt-003-max	Maximum landing weight (lbs) — 737 MAX 8?	152,800	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-max8 limits verbatim structural
+lim-wt-004	Maximum zero fuel weight (lbs) — 737-800?	138,300	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-800 limits verbatim structural
+lim-wt-004-max	Maximum zero fuel weight (lbs) — 737 MAX 8?	145,400	B737 AOM Rev 9.0	Ch 18 §18.2.3 Weight Limits (Certificated Limits table)		verified b737-max8 limits verbatim structural
