@@ -1,0 +1,25 @@
+name: Block unverified TSV on main
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  block-unverified:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fail if any TSV contains 'unverified'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Scanning all .tsv files for the tag 'unverified'..."
+          matches="$(grep -RIn --include='*.tsv' -w 'unverified' . || true)"
+          if [[ -n "${matches}" ]]; then
+            echo "::error::Found 'unverified' in TSV files. Remove the tag before merging to main."
+            echo "${matches}"
+            exit 1
+          fi
+          echo "OK: No TSV files contain 'unverified'."
