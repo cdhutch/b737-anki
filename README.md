@@ -7,10 +7,10 @@ Structured, source-controlled Anki deck for B737 training.
 # Core Philosophy
 
 - No AI trust.
-- Every generated note begins with the tag: `unverified`.
-- Manual verification happens in the TSV file.
+- New AI-generated notes start with the tag: `unverified`.
+- Manual verification happens **in the TSV file** (before importing into Anki).
 - Only after manual review is content merged from `draft` → `main`.
-- Section numbers (not page numbers) are used for source references.
+- **Section numbers (not page numbers)** are used for source references.
 - Git repository is the single source of truth.
 - Anki is only the delivery mechanism.
 
@@ -22,46 +22,59 @@ Primary goals:
 
 # Deck Architecture (Anki)
 
-## One Physical Deck
-B737::LIMITS
+## Physical Decks (recommended)
 
-All limits notes live here.
+- `B737::Limits`
+- `B737::Systems`
 
-## One Filtered Deck (Dynamic)
-B737::LIMITS::BOLDFACE
+(You can add more later, e.g., `B737::Flows`, `B737::Callouts`.)
+
+## Filtered Decks (dynamic)
+
+### Boldface (portfolio-wide)
+Name: `B737::BOLDFACE`
 
 Filtered search:
-deck:"B737::LIMITS" tag:boldface
+`tag:boldface`
 
-This deck is dynamically built in Anki.
-No duplicate notes are created.
+### Lights & Switches (portfolio-wide)
+Name: `B737::LIGHTS-SWITCHES`
+
+Filtered search:
+`tag:lights-switches`
+
+These decks are dynamically built in Anki. No duplicate notes are created.
 
 ---
 
 # Repository Structure
 
-flows/
-limits/
-maneuvers/
-recall-items/
-systems/
-callouts/
+Typical folders:
 
-Each TSV file represents one logical unit (e.g., §18.2.1 Altitude Limits).
+- `limits/`
+- `systems/`
+- `flows/`
+- `callouts/`
+- `maneuvers/`
+- `recall-items/`
+
+Each TSV file represents one logical unit (e.g., `§18.2.1 Altitude Limits`, `Electrical System`).
 
 ---
 
-# TSV Column Format
+# TSV Column Format (B737 Structured)
 
 All TSV files must use this exact column order:
 
-NoteID  
-Front  
-Back  
-Source Document  
-Source Location  
-Verification Notes  
-Tags  
+1. `NoteID`
+2. `Front`
+3. `Back`
+4. `Source Document`
+5. `Source Location`
+6. `Verification Notes`
+7. `Tags`
+
+**Important:** TSV files in this repo are stored **without a header row** so they can be imported directly into Anki without accidentally creating a “header note”.
 
 Tabs must be used as delimiters.
 
@@ -70,120 +83,114 @@ Tabs must be used as delimiters.
 # NoteID Rules
 
 - Must be globally unique.
-- Must remain stable once created.
-- Format:
-
-<category>-<topic>-###
-
-Examples:
-
-lim-alt-001  
-lim-spd-004  
-flow-bstart-003  
+- Must be stable (do not renumber once imported).
+- Use human-readable prefixes by category:
+  - Limits: `lim-...`
+  - Systems (electrical): `sys-elec-...`
 
 ---
 
-# Tag Taxonomy
+# Tag Taxonomy (tight)
 
-Tags are structured in four required categories plus optional context tags.
+## 1) Verification
+- `unverified` — present until manually validated in TSV, then removed.
 
----
+(We do **not** use a `verified` tag; “verified” is the absence of `unverified`.)
 
-## 1. Verification Status (Required)
-
+## 2) Aircraft Variant (exactly one required)
 Exactly one of:
-
-- `unverified`
-- `verified`
-
-New notes always begin as `unverified`.
-
----
-
-## 2. Aircraft Variant (Exactly One Required)
-
-Each note must contain exactly one of:
-
-- `b737-800`   → Applies only to the 737-800
-- `b737-max8`  → Applies only to the 737 MAX 8
-- `common`     → Applies identically to both airframes
+- `common`
+- `b737-800`
+- `b737-max8`
 
 Rules:
-
-- Do NOT combine variant tags.
+- Do not combine variant tags.
 - If a value differs between aircraft, create separate NoteIDs.
-- Default assumption is `common` unless a documented difference exists.
 
----
-
-## 3. Content Type (Exactly One Required)
-
+## 3) Content Type (at least one required)
+Examples:
 - `limits`
+- `systems`
 - `flow`
+- `callouts`
 - `maneuver`
 - `recall`
-- `systems`
-- `callouts`
+
+## 4) Memory Classification (only if applicable)
+- `boldface` — only if it is truly a required memory-script item.
+
+## Optional Context Tags (use sparingly)
+- `verbatim` — wording/number must be exact.
+- `structural` — hard red-line / structural limitation (mostly used in limitations).
+- `company-specific` — references company alerts, ops advisory pages, special company data.
+- `rvsm` — RVSM-specific tolerances/logic.
+- `lights-switches` — switch semantics + indications/annunciations.
 
 ---
 
-## 4. Memory Classification
+# Systems Notes Schema
 
-- `boldface-pending` (default until reviewed)
-- `boldface`
+Systems cards are built to support:
+A) **What powers / supplies / controls this?**
+B) **If X fails, what changes / what is lost / what powers it now?**
 
-Boldface-only study uses the filtered deck.
-No duplicate physical deck exists.
+## Card patterns
 
----
+### 1) Power / Supply / Control (PSC)
+Front:
+- “What powers **[bus/component]** normally?”
+- “What supplies **[system]** under **[condition]**?”
+- “What controls **[function]**?”
 
-# Optional Context Tags (Sim + Line Optimized)
+Back:
+- One concise relationship (optionally with a condition).
 
-These tags exist only if they improve filtering and operational recall.
+Tags:
+- `systems` + variant tag + `unverified` (until validated)
+- Add `verbatim` if precision matters
 
-- `verbatim` → Exact numeric/wording recall required.
-- `structural` → Hard red-line airframe or engine limitations.
-- `max-delta` → Differences specific to the MAX 8.
-- `rvsm` → RVSM regulatory-specific limitations.
-- `company-specific` → Company policy differs from Boeing baseline.
+### 2) Failure Effects (X fails → downstream)
+Front:
+- “If **[source/component]** fails, what changes / what is lost?”
+- “With **[condition]**, what powers **[bus]**?”
 
-Tags that are NOT used:
-- performance
-- training-only
+Back:
+- Tight operational consequences, typically 1–3 bullets.
+- Include “major loads lost” when the manual clearly lists them (avoid oral-exam essays).
 
----
+Tags:
+- `systems` + variant tag + `unverified`
 
-# Limits Workflow (Reset Model)
+### 3) Lights & Switches (switch semantics + annunciations)
+Front:
+- “What does **[switch]** do in **OFF/AUTO/ON/BAT**?”
+- “When does **[light/annunciation]** illuminate (GND vs FLT)?”
 
-1. Upload PDF section.
-2. ChatGPT generates a complete TSV file from that section.
-3. All notes:
-   - Fully populated
-   - Tagged `unverified`
-   - Include exactly one aircraft variant tag
-4. File goes into `draft` branch.
-5. Manual review + corrections happen in TSV.
-6. Merge `draft` → `main`.
-7. Import into Anki from `main` only.
+Back:
+- Exact behavior/logic.
+
+Tags:
+- `systems` + `lights-switches` + variant tag + `unverified`
+
+### 4) Cluster Cards (allowed)
+Use clusters when:
+- The source presents a list/table **or**
+- The set is logically stable and typically learned as a group.
+
+Keep clusters small and stable.
 
 ---
 
 # Branch Policy
 
-- `draft` = Generated, unverified, in-progress work.
-- `main`  = Fully verified, trusted, sim-ready content.
-
-Only verified sections are merged into `main`.
-
----
-
-# Anki Import Settings
-
-- Note Type → B737 Structured
-- Existing Notes → Update
-- Match Scope → Note Type
-- Separator → Tab
+- Work happens on `draft`.
+- Only verified TSV content is merged to `main`.
+- `main` should remain import-ready.
 
 ---
 
-This repository is maintained as a controlled training system.
+# Import Discipline (Anki)
+
+- Always confirm the correct **Note Type** (`B737 Structured`) before import.
+- Always confirm the correct **Deck** before import.
+- Since TSVs have **no header row**, you do not need a “first row is headers” option.
