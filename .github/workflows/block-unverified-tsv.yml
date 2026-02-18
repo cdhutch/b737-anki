@@ -16,7 +16,7 @@ jobs:
         run: |
           set -euo pipefail
           echo "Scanning all .tsv files for the tag 'unverified'..."
-          matches="$(grep -RIn --include='*.tsv' -w 'unverified' . || true)"
+          matches=$(grep -RIn --exclude-dir='.git' --include='*.tsv' -w 'unverified' . || true)
           if [[ -n "${matches}" ]]; then
             echo "::error::Found 'unverified' in TSV files. Remove the tag before merging to main."
             echo "${matches}"
