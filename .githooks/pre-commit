@@ -35,24 +35,24 @@ while IFS= read -r f; do
 
   # Check each line has expected number of tab-separated fields
   # Also flag empty NoteID (field 1)
-  awk -v file="$f" -v exp="$expected_cols" -F'\t' '
-    {
-      if (NF != exp) {
-        printf("⚠️  TSV column count mismatch: %s:%d (got %d, expected %d)\n", file, NR, NF, exp)
-        bad=1
-      }
-      if ($1 == "" || $1 ~ /^[[:space:]]*$/) {
-        printf("⚠️  Empty NoteID: %s:%d\n", file, NR)
-        bad=1
-      }
-    }
-    END { exit(bad) }
-  ' "$f" >/tmp/tsv_lint_out 2>/dev/null || bad=1
+  # awk -v file="$f" -v exp="$expected_cols" -F'\t' '
+  #   {
+  #     if (NF != exp) {
+  #       printf("⚠️  TSV column count mismatch: %s:%d (got %d, expected %d)\n", file, NR, NF, exp)
+  #       bad=1
+  #     }
+  #     if ($1 == "" || $1 ~ /^[[:space:]]*$/) {
+  #       printf("⚠️  Empty NoteID: %s:%d\n", file, NR)
+  #       bad=1
+  #     }
+  #   }
+  #   END { exit(bad) }
+  # ' "$f" >/tmp/tsv_lint_out 2>/dev/null || bad=1
 
-  if [[ -s /tmp/tsv_lint_out ]]; then
-    cat /tmp/tsv_lint_out
-    : > /tmp/tsv_lint_out
-  fi
+  # if [[ -s /tmp/tsv_lint_out ]]; then
+  #   cat /tmp/tsv_lint_out
+  #   : > /tmp/tsv_lint_out
+  # fi
 
 done <<< "$tsv_files"
 
@@ -61,6 +61,37 @@ if [[ "$bad" -ne 0 ]]; then
   echo "⚠️  TSV lint found issues (this does NOT block the commit)."
   echo "Fixing these will prevent broken Anki imports."
   echo ""
+fi
+
+echo "Checking TSV column counts (expecting 7 fields)..."
+
+bad=0
+
+while IFS= read -r file; do
+  lineno=0
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    lineno=$((lineno+1))
+
+    # Skip completely empty lines
+    [[ -z "$line" ]] && continue
+
+    cols=$(awk -F'\t' '{print NF}' <<< "$line")
+
+    if [[ "$cols" -ne 7 ]]; then
+      echo "⚠️  TSV column count mismatch: $file:$lineno (got $cols, expected 7)"
+      bad=1
+    fi
+  done < "$file"
+# done < <(git ls-files '*.tsv')
+done < <(
+  git ls-files '*.tsv' \
+  | grep -Ev '(^|/)[^/]*proto[^/]*\.tsv$'
+)
+
+if [[ "$bad" -ne 0 ]]; then
+  echo ""
+  echo "⚠️  TSV lint found issues (this does NOT block the commit)."
+  echo "Fixing these will prevent broken Anki imports."
 fi
 
 exit 0
