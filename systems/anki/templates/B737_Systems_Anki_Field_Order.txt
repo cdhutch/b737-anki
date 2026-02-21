@@ -1,0 +1,19 @@
+B737 Systems Anki Note Type — Field Order (Canonical)
+
+1.  note_id
+2.  system
+3.  subsystem
+4.  panel_group
+5.  panel_name
+6.  function_type
+7.  prompt
+8.  answer
+9.  normal_state
+10. failure_logic
+11. affects_bus
+12. powered_by
+13. interacts_with
+14. source
+15. ref_section
+16. tags
+17. notes
