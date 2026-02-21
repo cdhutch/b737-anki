@@ -1,0 +1,2 @@
+note_id	system	subsystem	topic	panel_group	panel_name	function_type	prompt	answer	normal_state	failure_logic	affects_bus	powered_by	interacts_with	source	ref_section	tags	status	notes
+sys-elec-swt-XXX	B737 Electrical	AC Power	switch	Overhead – Electrical		control	CAB/UTIL switch — what does OFF do?	Removes power from galley and cabin utility loads (load shed).						B737 Aircraft Systems Manual (Electrical)	Ch 6 §6.xx.x	common systems lights-switches	unverified	
