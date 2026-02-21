@@ -49,3 +49,6 @@ collection.anki2
 # OS metadata in TSV/CSV workflows
 *.bak
 *.orig
+
+# scratch working files (do not commit)
+systems/_scratch/
