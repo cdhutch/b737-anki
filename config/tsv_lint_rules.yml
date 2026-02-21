@@ -1,0 +1,22 @@
+# TSV lint rules: first match wins
+#
+# columns:
+#   - set to an integer to enforce exact column counts
+#   - set to null to skip column count checks
+#
+# Notes:
+# - Keep scratch loose; it's working area.
+# - Systems currently appear to be 18 cols for the main file, 19 for some scratch/refactor files.
+
+rules:
+  - glob: "domains/*/systems/_scratch/**/*.tsv"
+    columns: null
+
+  - glob: "domains/*/systems/templates/**/*.tsv"
+    columns: null
+
+  - glob: "domains/*/systems/**/*.tsv"
+    columns: 18
+
+  - glob: "domains/*/limits/**/*.tsv"
+    columns: 7

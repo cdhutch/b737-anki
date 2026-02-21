@@ -1,0 +1,108 @@
+/* B737 Systems — Card Styling */
+
+.sys-wrap {
+  line-height: 1.35;
+  font-size: 16px;
+}
+
+.sys-kicker {
+  color: #666;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.sys-subsystem {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.sys-topic {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.sys-prompt {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sys-panel {
+  color: #555;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.sep {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 12px 0;
+}
+
+.block {
+  margin: 10px 0;
+}
+
+.block .h {
+  font-weight: 700;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.block .body {
+  color: #111;
+}
+
+.meta-row {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.lbl {
+  min-width: 110px;
+  color: #666;
+  font-weight: 600;
+}
+
+.val {
+  color: #111;
+}
+
+.ref {
+  margin-top: 8px;
+}
+
+.foot {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.muted {
+  color: #666;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Make embedded HTML tables readable */
+table {
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 700;
+}

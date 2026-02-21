@@ -1,0 +1,111 @@
+<!-- B737 Systems — Back -->
+
+<div class="sys-wrap">
+
+  {{#system}}
+  <div class="sys-kicker">{{system}}</div>
+  {{/system}}
+
+  {{#subsystem}}
+  <div class="sys-subsystem">{{subsystem}}</div>
+  {{/subsystem}}
+
+  <div class="sys-prompt">
+    {{prompt}}
+  </div>
+
+  <hr class="sep" />
+
+  {{#answer}}
+  <div class="block">
+    <div class="h">Answer</div>
+    <div class="body">
+      {{answer}}
+    </div>
+  </div>
+  {{/answer}}
+
+  {{#normal_state}}
+  <div class="block">
+    <div class="h">Normal state</div>
+    <div class="body">
+      {{normal_state}}
+    </div>
+  </div>
+  {{/normal_state}}
+
+  {{#failure_logic}}
+  <div class="block">
+    <div class="h">Failure / logic</div>
+    <div class="body">
+      {{failure_logic}}
+    </div>
+  </div>
+  {{/failure_logic}}
+
+  {{#affects_bus}}
+  <div class="meta-row">
+    <span class="lbl">Affects bus</span>
+    <span class="val">{{affects_bus}}</span>
+  </div>
+  {{/affects_bus}}
+
+  {{#powered_by}}
+  <div class="meta-row">
+    <span class="lbl">Powered by</span>
+    <span class="val">{{powered_by}}</span>
+  </div>
+  {{/powered_by}}
+
+  {{#interacts_with}}
+  <div class="meta-row">
+    <span class="lbl">Interacts with</span>
+    <span class="val">{{interacts_with}}</span>
+  </div>
+  {{/interacts_with}}
+
+  {{#panel_group}}
+  <div class="meta-row">
+    <span class="lbl">Panel</span>
+    <span class="val">{{panel_group}}{{#panel_name}} — {{panel_name}}{{/panel_name}}</span>
+  </div>
+  {{/panel_group}}
+
+  {{#ref_section}}
+  <div class="ref">
+    <span class="lbl">Ref</span>
+    <span class="val">{{ref_section}}</span>
+  </div>
+  {{/ref_section}}
+
+  {{#source}}
+  <div class="ref">
+    <span class="lbl">Source</span>
+    <span class="val">{{source}}</span>
+  </div>
+  {{/source}}
+
+  {{#tags}}
+  <div class="foot muted">
+    <span class="lbl">Tags</span>
+    <span class="val">{{tags}}</span>
+  </div>
+  {{/tags}}
+
+  {{#notes}}
+  <div class="block notes">
+    <div class="h">Notes</div>
+    <div class="body">
+      {{notes}}
+    </div>
+  </div>
+  {{/notes}}
+
+  {{#note_id}}
+  <div class="foot muted">
+    <span class="lbl">ID</span>
+    <span class="val mono">{{note_id}}</span>
+  </div>
+  {{/note_id}}
+
+</div>

@@ -1,0 +1,11 @@
+sys-elec-proto-001	AC electrical: what are the two basic principles of operation (select both, recall)?	"• No paralleling of AC power sources.
+• A source connected to an AC Transfer Bus automatically disconnects the previous source."	B737 Electrical Systems Manual	Ch 6 AC Electrical – Basic principles of operation		unverified common systems verbatim
+sys-elec-proto-002	Does the B737NG utilize a Ram Air Turbine (RAT) as an electrical power source?	No. (Electrical power sources include engine generators (IDG), APU generator, and external power.)	B737 Electrical Systems Manual	Ch 6 Electrical – Power sources		unverified common systems verbatim
+sys-elec-proto-003	GRD POWER AVAILABLE (blue): what does it indicate?	External power is connected and meets aircraft quality standards (e.g., voltage and frequency).	B737 Electrical Systems Manual	Ch 6 Controls & Indicators – External power indications		unverified common systems lights-switches verbatim
+sys-elec-proto-004	APU GEN OFF BUS (blue): what does it indicate?	APU is running and not powering any AC transfer bus.	B737 Electrical Systems Manual	Ch 6 Controls & Indicators – APU generator indications		unverified common systems lights-switches verbatim
+sys-elec-proto-005	DRIVE (amber): what conditions cause it to illuminate? (best recall)	IDG oil pressure low (below limit) OR an underfrequency condition exists.	B737 Electrical Systems Manual	Ch 6 Controls & Indicators – IDG/GEN drive indications		unverified common systems lights-switches verbatim
+sys-elec-proto-006	GEN OFF BUS (amber): when does it illuminate?	Any time the engine generator is not powering the related AC Transfer Bus (including when the generator is not operating, e.g., engine shutdown).	B737 Electrical Systems Manual	Ch 6 Controls & Indicators – GEN OFF BUS logic		unverified common systems lights-switches verbatim
+sys-elec-proto-007	IDG low oil pressure (DRIVE light illuminated): what are possible causes? (cluster)	"• IDG manually disconnected
+• Engine shutdown
+• Automatic disconnect
+• IDG failure"	B737 Electrical Systems Manual	Ch 6 Controls & Indicators – DRIVE light / IDG disconnect		unverified common systems lights-switches

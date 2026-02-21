@@ -49,3 +49,12 @@ collection.anki2
 # OS metadata in TSV/CSV workflows
 *.bak
 *.orig
+
+# scratch working files (do not commit)
+systems/_scratch/
+domains/b737/systems/_scratch/system-737-electrical_UPDATED_v2.tsv
+
+# --- Domain-first repo guardrails ---
+/flows/
+/maneuvers/
+/recall-items/

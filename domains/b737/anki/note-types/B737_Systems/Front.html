@@ -1,0 +1,25 @@
+<!-- B737 Systems — Front -->
+
+<div class="sys-wrap">
+
+  {{#system}}
+  <div class="sys-kicker">{{system}}</div>
+  {{/system}}
+
+  {{#subsystem}}
+  <div class="sys-subsystem">{{subsystem}}</div>
+  {{/subsystem}}
+
+  <div class="sys-prompt">
+    {{prompt}}
+  </div>
+
+  {{#panel_group}}
+  <div class="sys-panel">
+    <span class="lbl">Panel:</span>
+    <span class="val">{{panel_group}}</span>
+    {{#panel_name}}<span class="muted">—</span> <span class="val">{{panel_name}}</span>{{/panel_name}}
+  </div>
+  {{/panel_group}}
+
+</div>

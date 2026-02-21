@@ -21,7 +21,7 @@ echo "Running TSV structural lint (warning-only)..."
 
 # Expected columns per row (your Anki note schema): 7
 # NoteID, Front, Back, Source Document, Source Location, Verification Notes, Tags
-expected_cols=7
+expected_cols=18
 
 # Find TSV files (excluding .git)
 tsv_files=$(find . -type f -name '*.tsv' -not -path './.git/*' || true)
@@ -63,11 +63,70 @@ if [[ "$bad" -ne 0 ]]; then
   echo ""
 fi
 
-echo "Checking TSV column counts (expecting 7 fields)..."
+# echo "Checking TSV column counts (expecting 18 fields)..."
+
+# bad=0
+
+# while IFS= read -r file; do
+#   lineno=0
+#   while IFS= read -r line || [[ -n "$line" ]]; do
+#     lineno=$((lineno+1))
+
+#     # Skip completely empty lines
+#     [[ -z "$line" ]] && continue
+
+#     cols=$(awk -F'\t' '{print NF}' <<< "$line")
+
+#     if [[ "$cols" -ne 18 ]]; then
+#       echo "⚠️  TSV column count mismatch: $file:$lineno (got $cols, expected 18)"
+#       bad=1
+#     fi
+#   done < "$file"
+# # done < <(git ls-files '*.tsv')
+# done < <(
+#   git ls-files '*.tsv' \
+#   | grep -Ev '(^|/)[^/]*proto[^/]*\.tsv$'
+# )
+
+echo "Checking TSV column counts (schema-aware)..."
 
 bad=0
 
+# Decide expected columns by path.
+# - limits TSVs: legacy 7-field (NoteID, Front, Back, Source Doc, Source Location, Verification Notes, Tags)
+# - systems TSVs: 18-field schema (domain/system schema)
+expected_cols_for_file() {
+  local f="$1"
+
+  # Skip template domain entirely
+  if [[ "$f" == domains/_template/* ]]; then
+    echo 0
+    return
+  fi
+
+  # Limits remain 7-field
+  if [[ "$f" == */limits/*.tsv ]]; then
+    echo 7
+    return
+  fi
+
+  # Systems are 18-field (including _scratch; still useful to lint)
+  if [[ "$f" == */systems/*.tsv ]] || [[ "$f" == */systems/*/*.tsv ]]; then
+    echo 18
+    return
+  fi
+
+  # Unknown / not governed by schema lint
+  echo 0
+}
+
 while IFS= read -r file; do
+  [[ -z "$file" ]] && continue
+  [[ ! -s "$file" ]] && continue
+
+  exp="$(expected_cols_for_file "$file")"
+  [[ "$exp" -eq 0 ]] && continue
+
   lineno=0
   while IFS= read -r line || [[ -n "$line" ]]; do
     lineno=$((lineno+1))
@@ -77,16 +136,22 @@ while IFS= read -r file; do
 
     cols=$(awk -F'\t' '{print NF}' <<< "$line")
 
-    if [[ "$cols" -ne 7 ]]; then
-      echo "⚠️  TSV column count mismatch: $file:$lineno (got $cols, expected 7)"
+    if [[ "$cols" -ne "$exp" ]]; then
+      echo "⚠️  TSV column count mismatch: $file:$lineno (got $cols, expected $exp)"
       bad=1
     fi
   done < "$file"
-# done < <(git ls-files '*.tsv')
+
 done < <(
   git ls-files '*.tsv' \
-  | grep -Ev '(^|/)[^/]*proto[^/]*\.tsv$'
+    | grep -Ev '(^|/)[^/]*proto[^/]*\.tsv$' \
+    | grep -Ev '^domains/b737/systems/_scratch/' \
+    | grep -Ev '^domains/b737/systems/templates/'
 )
+
+if [[ "$bad" -eq 0 ]]; then
+  echo "✅ TSV column counts OK."
+fi
 
 if [[ "$bad" -ne 0 ]]; then
   echo ""
@@ -95,3 +160,4 @@ if [[ "$bad" -ne 0 ]]; then
 fi
 
 exit 0
+
