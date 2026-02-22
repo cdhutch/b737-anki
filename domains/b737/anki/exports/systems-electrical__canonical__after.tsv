@@ -1,0 +1,13 @@
+note_id	after_md
+sys-elec-psc-010	- Transfer bus (1)\n- Main bus (1)\n- Galley buses (2)\n- Ground Service Bus (1).
+sys-elec-psc-020	If ground power available:\n- Removes previously connected power from AC transfer buses\n- Connects ground power to AC transfer buses if power quality is correct
+sys-elec-psc-021	If neither AC transfer bus powered by IDG:\n- Connects both AC transfer buses to APU generator\n- Disconnected external power\n- Illuminates opposite SOURCE OFF light until other APU GEN switch moved to ON.\nIf both AC transfer buses powered by IDGs: \n- Powers the related transfer bus from the APU generator\n- Other transfer bus continues to receive power from the IDG
+sys-elec-fail-050	Sheds incrementally:\n1. Galleys and main bus on transfer bus 2\n2. Galleys and main bus on transfer bus 1\n3. IFE buses.
+sys-elec-psc-002	- AC power system\n- DC power system\n- Standby power system.
+sys-elec-fail-067	- At glideslope capture during a flight director or autopilot ILS approach\n- When the BUS TRANSFER switch is positioned to OFF.
+sys-elec-psc-065	- TR1 and TR2 each power DC bus 1, DC bus 2, and the DC standby bus.\n- They are connected via the cross bus tie relay
+sys-elec-psc-080	- 24V nickel-cadmium battery\n- Located in the electronics compartment
+sys-elec-fail-083	- Battery bus\n- DC standby bus\n- Hot battery bus\n- Switched hot battery bus.
+sys-elec-psc-091	- Static inverter\n- Main battery.\n- AC standby bus\n- DC standby bus\n- Battery bus\n- Hot battery bus\n- Switched hot battery bus.
+sys-elec-psc-092	In the Normal Standby Power System Configuration, what powers the following buses?  AC Standby Bus: AC Transfer Bus #1\n• DC Standby Bus: TR1, TR2, and TR3\n• Battery Bus: TR3\n• Hot Battery Bus: Battery and/or Battery Charger\n• Switched Hot Battery Bus: Battery and/or Battery Charger.
+sys-elec-fail-093	• With the loss of all AC generators and the guards down on the BATTERY  and STANDBY POWER switches, what powers the following buses: AC Standby Bus: Battery via static inverter\n• DC Standby Bus: battery\n• Battery Bus: battery\n• Hot Battery Bus: battery\n• Switched Hot Battery Bus: battery?
