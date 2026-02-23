@@ -61,6 +61,9 @@ domains/b737/systems/_scratch/system-737-electrical_UPDATED_v2.tsv
 
 # Anki pipeline generated artifacts
 domains/**/anki/generated/
+domains/**/anki/generated/*.html
+domains/**/anki/tmp/
+
+# Pipeline intermediates (re-creatable)
 domains/**/anki/exports/*__after_html.tsv
 domains/**/anki/exports/*__import_html.tsv
-domains/**/anki/tmp/

@@ -93,15 +93,24 @@ def validate(md_text: str, path: Path) -> tuple[list[Issue], str]:
             continue
 
         # 2) Missing blank line before a markdown list
-        # If current line is "- item", previous non-separator line should be blank
+        # Only check at the START of a list run (i.e., previous line is not also a list item).
         if MD_BULLET_RE.match(line):
-            # Find immediate previous line (not skipping) because markdown needs actual blank line
             if i > 0:
                 prev = lines[i - 1]
-                # If previous line isn't blank AND isn't an AFTER heading, warn
-                if prev.strip() != "" and not AFTER_RE.match(prev):
-                    add_issue(i, "NO_BLANK_BEFORE_LIST", "Markdown list should be preceded by a blank line in AFTER block")
+
+                prev_is_list = bool(MD_BULLET_RE.match(prev))
+                prev_is_heading = bool(HDR_RE.match(prev) or AFTER_RE.match(prev))
+
+                # If this is the first bullet in a list (prev is not a bullet),
+                # then require either a blank line or a heading immediately above.
+                if not prev_is_list and prev.strip() != "" and not prev_is_heading:
+                    add_issue(
+                        i,
+                        "NO_BLANK_BEFORE_LIST",
+                        "Markdown list should be preceded by a blank line in AFTER block",
+                    )
             continue
+
 
     return issues, "\n".join(out_lines) + ("\n" if md_text.endswith("\n") else "")
 
