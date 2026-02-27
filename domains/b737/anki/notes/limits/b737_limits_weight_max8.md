@@ -2,7 +2,7 @@
 schema: cnsf/v0
 domain: b737
 note_type: limits_weight_model
-note_id: b737_limits_weight_800
+note_id: b737_limits_weight_max8
 
 anki:
   model: B737_Structured
@@ -10,7 +10,7 @@ anki:
 
 tags:
   - domain:b737
-  - model:800
+  - model:max8
   - topic:limits
   - subtopic:weight
   - source:aom
@@ -23,7 +23,7 @@ fields:
 ---
 # front_md
 
-**B737 LIMITS — WEIGHTS (737-800)**
+**B737 LIMITS --- WEIGHTS (737 MAX 8)**
 
 Fill in the certified maximum weights (x1000 lb):
 
@@ -34,13 +34,16 @@ Fill in the certified maximum weights (x1000 lb):
 | MTOW     | ___   |
 | Max Taxi | ___   |
 
+
 # back_md
+
 
 | Limit    | Value |
 |---       |---:   |
-| MZFW     | 138.3 |
-| MLW      | 146.3 |
-| MTOW     | 174.2 |
-| Max Taxi | 174.4 |
+| MZFW     | 145.4 |
+| MLW      | 152.8 |
+| MTOW     | 182.2 |
+| Max Taxi | 182.7 |
 
-Memory anchor: MTOW is 0.2 below Max Taxi.
+
+Memory anchor: MTOW is 0.5 below Max Taxi.
