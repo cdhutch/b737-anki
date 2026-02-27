@@ -1,0 +1,48 @@
+/* B737_Structured — repo-controlled model styling
+   Goal: consistent table boundaries & readability in Anki (desktop + mobile).
+*/
+
+.card {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.35;
+  text-align: left;
+}
+
+/* Make tables look like real tables (cell boundaries). */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0.75em 0;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 6px 8px;
+  vertical-align: top;
+}
+
+/* Header clarity */
+th {
+  font-weight: 700;
+}
+
+/* Right-align numeric columns (best-effort) */
+td[style*="text-align:right"],
+th[style*="text-align:right"] {
+  text-align: right !important;
+}
+
+/* Underscore blanks: keep them visually distinct */
+td:has(> span.blank),
+span.blank {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Optional: keep long source lines from blowing out layout */
+p, li, td, th {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
