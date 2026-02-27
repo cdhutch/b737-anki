@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: cnsf-canonical
+        name: CNSF canonical YAML order
+        entry: tools/anki/scripts/check_cnsf_canonical.sh
+        language: system
+        pass_filenames: false
