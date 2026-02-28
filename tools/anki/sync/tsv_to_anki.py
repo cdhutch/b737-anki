@@ -154,6 +154,7 @@ def main() -> int:
     ap.add_argument("--anki-url", default=ANKI_CONNECT_URL_DEFAULT)
     ap.add_argument("--map-out", default="", help="Optional mapping TSV to append to on CREATE flows")
     ap.add_argument("--dry-run", action="store_true", help="Parse + validate only; do not call AnkiConnect")
+    ap.add_argument("--check", action="store_true", help="Validate TSV; fail if any row would CREATE (missing noteId); no AnkiConnect calls")
     args = ap.parse_args()
 
     tsv_path = Path(args.tsv)
@@ -168,6 +169,16 @@ def main() -> int:
 
     if args.dry_run:
         print(f"OK: parsed rows={len(rows)} (dry-run)")
+        return 0
+
+    if args.check:
+        missing = [r.note_id for r in rows if not r.noteId]
+        if missing:
+            eprint("FAIL: --check would CREATE (missing noteId) for:")
+            for nid in missing:
+                eprint(f"  - {nid}")
+            return 1
+        print(f"OK: check passed rows={len(rows)} (no creates)")
         return 0
 
     # Basic connectivity check
