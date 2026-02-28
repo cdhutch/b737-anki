@@ -67,3 +67,7 @@ domains/**/anki/tmp/
 # Pipeline intermediates (re-creatable)
 domains/**/anki/exports/*__after_html.tsv
 domains/**/anki/exports/*__import_html.tsv
+
+# Mapping files (runtime artifacts; not canonical)
+domains/**/anki/mapping/
+domains/**/anki/mapping/*.tsv
