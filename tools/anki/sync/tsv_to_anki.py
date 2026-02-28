@@ -111,6 +111,24 @@ def build_fields_payload(row: TsvRow) -> Dict[str, str]:
     return fields
 
 
+def model_field_names(model_name: str, url: str) -> List[str]:
+    # AnkiConnect: returns list of field names for a given model.
+    return anki_request("modelFieldNames", {"modelName": model_name}, url=url) or []
+
+
+def validate_fields_against_model(row: TsvRow, model_fields: List[str]) -> None:
+    payload_fields = build_fields_payload(row)
+    unknown = sorted([k for k in payload_fields.keys() if k not in set(model_fields)])
+    if unknown:
+        raise SystemExit(
+            "FAIL: TSV contains field(s) not present in Anki model\n"
+            f"  note_id: {row.note_id}\n"
+            f"  model  : {row.model}\n"
+            f"  unknown: {', '.join(unknown)}\n"
+            "Hint: rename TSV columns to match Anki field names, or update the model in Anki."
+        )
+
+
 def update_note(row: TsvRow, url: str) -> None:
     note_id_num = int(row.noteId)
     fields = build_fields_payload(row)
@@ -170,6 +188,17 @@ def apply_noteid_map(rows: List[TsvRow], mapping: Dict[str, str]) -> int:
         return applied
     for r in rows:
         if not r.noteId:
+            hit = (mapping.get(r.note_id) or "").strip()
+            if hit:
+                r.noteId = hit
+                applied += 1
+    return applied
+    for r in rows:
+        # Validate field names against the target Anki model (cached per model).
+        if r.model not in model_fields_cache:
+            model_fields_cache[r.model] = model_field_names(r.model, url=args.anki_url)
+        validate_fields_against_model(r, model_fields_cache[r.model])
+        if not r.noteId:
             hit = mapping.get(r.note_id, "").strip()
             if hit:
                 r.noteId = hit
@@ -222,6 +251,19 @@ def main() -> int:
     # Basic connectivity check
     anki_request("version", {}, url=args.anki_url)
 
+
+    # Validate TSV field names against the target Anki model field names.
+    # This requires AnkiConnect, so we do it only in the real sync path.
+    model_fields_cache: Dict[str, List[str]] = {}
+    for r in rows:
+        if not r.model:
+            raise SystemExit(f"Missing model for note_id={r.note_id}")
+        if r.model not in model_fields_cache:
+            model_fields_cache[r.model] = model_field_names(r.model, url=args.anki_url)
+        validate_fields_against_model(r, model_fields_cache[r.model])
+
+
+    model_fields_cache: Dict[str, List[str]] = {}
     created = 0
     updated = 0
     for r in rows:
